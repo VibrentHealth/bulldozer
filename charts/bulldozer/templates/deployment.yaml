@@ -26,6 +26,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: "GITHUB_KEY"
+              valueFrom:
+                secretKeyRef:
+                  key:  githubkey
+                  name: {{ .Release.Name }}-auth
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
             - name: config

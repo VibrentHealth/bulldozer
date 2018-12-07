@@ -30,6 +30,7 @@ data:
         # The private key of the GitHub app (pem file download from GitHub)
         private_key: |
           -----BEGIN RSA PRIVATE KEY-----
+          {{ .Values.githubkey }}
           -----END RSA PRIVATE KEY-----
     # Options for application behavior
     options:
