@@ -1,0 +1,44 @@
+apiVersion: v1
+data:
+  bulldozer.yml: |
+    # Options for the http server
+    server:
+      # The listen address and port
+      address: "0.0.0.0"
+      port: 8080
+    # Options for logging output
+    logging:
+      # If true, logs are printed in human-readable form. We recommend using
+      # "false" to output JSON-formatted logs in production
+      text: true
+
+      # Set a minimum logging level threshold
+      # Choose from: debug, info, warn, error
+      level: debug
+
+    # Options for connecting to GitHub
+    github:
+      # The URL of the GitHub homepage
+      web_url: "https://github.com"
+      # The base URL for v3 (REST) API requests
+      v3_api_url: "https://api.github.com"
+      app:
+        # The integration ID of the GitHub app
+        integration_id: 15219
+        # A random string used to validate webhooks
+        webhook_secret: ""
+        # The private key of the GitHub app (pem file download from GitHub)
+        private_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          -----END RSA PRIVATE KEY-----
+    # Options for application behavior
+    options:
+      # The path within repositories to find the bulldozer.yml config file
+      configuration_path: .bulldozer.yml
+      # The name of the application. This will affect the User-Agent header
+      # when making requests to Github.
+      app_name: bulldozer
+
+kind: ConfigMap
+metadata:
+  name: bulldozer-config
