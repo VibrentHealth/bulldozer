@@ -26,7 +26,7 @@ data:
         # The integration ID of the GitHub app
         integration_id: 15219
         # A random string used to validate webhooks
-        webhook_secret: ""
+        webhook_secret: {{ .Values.webhookSecret | quote }}
         # The private key of the GitHub app (pem file download from GitHub)
         private_key: |
           -----BEGIN RSA PRIVATE KEY-----
