@@ -25,10 +25,9 @@ spec:
         app.kubernetes.io/name: {{ include "bulldozer.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
       annotations:
-        vault.security.banzaicloud.io/vault-addr: https://vault.ssk8s.vibrenthealth.com:443
-        vault.security.banzaicloud.io/vault-path: qak8s.vibrenthealth.com
-        vault.security.banzaicloud.io/vault-role: bulldozer-role
-        vault.security.banzaicloud.io/vault-skip-verify: "true"
+        {{ range $key, $value := .Values.podAnnotations }}
+        {{ $key }}: {{ $value | quote}}
+        {{- end }}
     spec:
       serviceAccountName: {{ .Chart.Name }}
       volumes:
