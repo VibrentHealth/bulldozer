@@ -38,10 +38,15 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
-            - name: "GITHUB_KEY"
+            - name: "GITHUB_APP_PRIVATE_KEY"
               valueFrom:
                 secretKeyRef:
                   key:  githubkey
+                  name: {{ .Release.Name }}-auth
+            - name: "GITHUB_APP_WEBHOOK_SECRET"
+              valueFrom:
+                secretKeyRef:
+                  key: webhookSecret
                   name: {{ .Release.Name }}-auth
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
