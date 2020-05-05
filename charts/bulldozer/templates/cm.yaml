@@ -24,14 +24,7 @@ data:
       v3_api_url: "https://api.github.com"
       app:
         # The integration ID of the GitHub app
-        integration_id: 15219
-        # A random string used to validate webhooks
-        webhook_secret: {{ .Values.webhookSecret | quote }}
-        # The private key of the GitHub app (pem file download from GitHub)
-        private_key: |
-          -----BEGIN RSA PRIVATE KEY-----
-          {{ .Values.githubkey }}
-          -----END RSA PRIVATE KEY-----
+        integration_id: {{ .Values.integrationId }}
     # Options for application behavior
     options:
       # The path within repositories to find the bulldozer.yml config file
